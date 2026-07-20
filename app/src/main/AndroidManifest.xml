@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Colorear"
+        android:label="Colorear (1996)"
         android:supportsRtl="true"
         android:theme="@style/Theme.Colorear">
         <activity

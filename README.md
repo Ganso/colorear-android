@@ -29,3 +29,21 @@ Los assets originales necesarios se incluyen en `app/src/main/assets/dos`.
 
 Los ratones Android también pueden usar el botón secundario para alternar el menú.
 La primera vez que se colorea una zona aparece un recordatorio de los controles.
+
+## Preparar un nuevo release
+
+Antes de generar una nueva versión para publicar, editar **`app/build.gradle.kts`** y actualizar estos dos campos dentro de `defaultConfig`:
+
+| Campo         | Tipo   | Descripción                                                                 |
+|---------------|--------|-----------------------------------------------------------------------------|
+| `versionCode` | Entero | Código interno incremental. Google Play exige que sea **estrictamente mayor** que el de la versión anterior. |
+| `versionName` | String | Nombre visible para el usuario (p. ej. `"1.3"`). No afecta a la lógica de actualización, pero es lo que se muestra en la ficha de la Play Store. |
+
+Ejemplo:
+
+```kotlin
+versionCode = 4
+versionName = "1.3"
+```
+
+Una vez actualizados, ejecutar `./build_and_copy.sh` para generar el APK de depuración, o compilar el AAB de release desde Android Studio (`Build > Generate Signed Bundle`).
