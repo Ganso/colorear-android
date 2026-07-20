@@ -39,7 +39,7 @@ class MainActivity : Activity() {
         }
 
         val message = TextView(this).apply {
-            text = "COLOREAR es una versión para Android del juego hecho por Jorge y Javi prieto para MS-DOS en el año 1996\n\nMás información y código fuente en https://github.com/Ganso/Colorear-Android"
+            text = "COLOREAR es una versión para Android del juego hecho por Jorge y Javi prieto para MS-DOS en el año 1996\n\nInfinitas gracias a Migue McLeod por conservar el código tras años creyéndolo perdido, y por hacer el port a Android.\n\nMás información y código fuente en https://github.com/Ganso/Colorear-Android"
             textSize = 20f
             setTextColor(0xFFFFFFFF.toInt())
             setLinkTextColor(0xFFFFFF00.toInt())

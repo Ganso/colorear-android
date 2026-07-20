@@ -6,6 +6,8 @@ El código fuente de la versión original de MS-DOS puede encontrarse en: [https
 
 Este proyecto es un port directo creado con la ayuda de la Inteligencia Artificial **Claude**, conservando su framebuffer indexado original de 320 x 200 píxeles y la semántica de la paleta VGA de 256 colores. La lógica original ha sido adaptada a Kotlin para funcionar de forma nativa en dispositivos Android modernos.
 
+Infinitas gracias a **Migue McLeod** por conservar el código tras años creyéndolo perdido, y por hacer el port a Android.
+
 ## Abrir y ejecutar
 
 1. Abrir este directorio con Android Studio.
