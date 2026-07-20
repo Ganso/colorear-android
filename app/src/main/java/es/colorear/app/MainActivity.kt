@@ -3,6 +3,7 @@ package es.colorear.app
 import android.app.Activity
 import android.app.AlertDialog
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
 import android.view.View
 import android.view.WindowManager
@@ -21,21 +22,58 @@ class MainActivity : Activity() {
     }
 
     private fun showInitialNotice() {
+        val density = resources.displayMetrics.density
+        val corner = 14f * density
+        val stroke = 4f * density
+
+        val backgroundDrawable = android.graphics.drawable.GradientDrawable().apply {
+            setColor(0xF5001018.toInt())
+            setStroke(stroke.toInt(), 0xFF00FFFF.toInt())
+            cornerRadius = corner
+        }
+
+        val container = android.widget.LinearLayout(this).apply {
+            orientation = android.widget.LinearLayout.VERTICAL
+            setPadding(50, 50, 50, 50)
+            background = backgroundDrawable
+        }
+
         val message = TextView(this).apply {
             text = "COLOREAR es una versión para Android del juego hecho por Jorge y Javi prieto para MS-DOS en el año 1996\n\nMás información y código fuente en https://github.com/Ganso/Colorear-Android"
-            setPadding(50, 50, 50, 50)
-            textSize = 16f
+            textSize = 20f
+            setTextColor(0xFFFFFFFF.toInt())
+            setLinkTextColor(0xFFFFFF00.toInt())
             autoLinkMask = Linkify.WEB_URLS
+            movementMethod = LinkMovementMethod.getInstance()
+            typeface = android.graphics.Typeface.DEFAULT_BOLD
+            gravity = android.view.Gravity.CENTER
         }
-        AlertDialog.Builder(this)
-            .setTitle("Información")
-            .setView(message)
-            .setPositiveButton("Aceptar") { dialog, _ ->
-                dialog.dismiss()
-                hideSystemUi()
-            }
+
+        val button = TextView(this).apply {
+            text = "ACEPTAR"
+            textSize = 22f
+            setTextColor(0xFFFFFF00.toInt())
+            typeface = android.graphics.Typeface.DEFAULT_BOLD
+            gravity = android.view.Gravity.CENTER
+            setPadding(0, 50, 0, 0)
+        }
+
+        container.addView(message)
+        container.addView(button)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(container)
             .setCancelable(false)
-            .show()
+            .create()
+
+        dialog.window?.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT))
+
+        button.setOnClickListener {
+            dialog.dismiss()
+            hideSystemUi()
+        }
+
+        dialog.show()
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
